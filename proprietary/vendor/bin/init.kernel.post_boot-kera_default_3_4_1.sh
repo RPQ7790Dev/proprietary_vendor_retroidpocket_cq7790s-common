@@ -44,7 +44,8 @@ if [ -d /proc/sys/walt ]; then
 	echo 0x00 > /sys/devices/system/cpu/cpu3/core_ctl/assist_cpu_misfit_mask
 
 	# Core control parameters for gold+
-	echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
+	# keep prime online: emulators run 4-5 busy threads that otherwise spill to silvers
+	echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 	echo 60 > /sys/devices/system/cpu/cpu7/core_ctl/busy_up_thres
 	echo 30 > /sys/devices/system/cpu/cpu7/core_ctl/busy_down_thres
 	echo 100 > /sys/devices/system/cpu/cpu7/core_ctl/offline_delay_ms
@@ -60,8 +61,9 @@ if [ -d /proc/sys/walt ]; then
 	echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/enable
 
 	# Setting b.L scheduler parameters
-	echo 71 95 > /proc/sys/walt/sched_upmigrate
+	# downmigrate first: WALT rejects upmigrate < current downmigrate (default 85)
 	echo 65 85 > /proc/sys/walt/sched_downmigrate
+	echo 71 95 > /proc/sys/walt/sched_upmigrate
 	echo 85 > /proc/sys/walt/sched_group_downmigrate
 	echo 100 > /proc/sys/walt/sched_group_upmigrate
 	echo 1 > /proc/sys/walt/sched_walt_rotate_big_tasks
@@ -130,6 +132,7 @@ if [ -d /proc/sys/walt ]; then
 	echo 1190400 80 1612800 80 2073600 80 2707200 80 2841600 80 > /sys/devices/system/cpu/cpufreq/policy3/walt/zone_max_util_pct
 	echo 1209600 80 1651200 80 2150400 80 2496000 80 2956800 80 > /sys/devices/system/cpu/cpufreq/policy7/walt/zone_max_util_pct
 
+
 else
 	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy3/scaling_governor
@@ -148,6 +151,8 @@ echo 0 > /proc/sys/kernel/sched_util_clamp_min_rt_default
 # cpuset parameters
 echo 0-2 > /dev/cpuset/background/cpus
 echo 0-2 > /dev/cpuset/system-background/cpus
+# keep foreground app (emulator worker threads) off the silver cluster
+echo 3-7 > /dev/cpuset/top-app/cpus
 
 # configure bus-dcvs
 bus_dcvs="/sys/devices/system/cpu/bus_dcvs"

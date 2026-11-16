@@ -5799,3 +5799,6 @@ esac
 misc_link=$(ls -l /dev/block/bootdevice/by-name/misc)
 real_path=${misc_link##*>}
 setprop persist.vendor.mmi.misc_dev_path $real_path
+
+mount -t debugfs none /sys/kernel/debug
+chmod 0777 /sys/kernel/debug

@@ -209,6 +209,9 @@ PRODUCT_COPY_FILES += \
     vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/eliza_vertigo_lsm6dso_1.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/eliza_vertigo_lsm6dso_1.json \
     vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/eliza_vertigo_mmc56x3x_0.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/eliza_vertigo_mmc56x3x_0.json \
     vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/json.lst:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/json.lst \
+    vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/nicobar_icm4x6xa_0.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/nicobar_icm4x6xa_0.json \
+    vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/nicobar_qmc6308_0.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/nicobar_qmc6308_0.json \
+    vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/nicobar_qmi8658_0.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/nicobar_qmi8658_0.json \
     vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/qsh_ble.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/qsh_ble.json \
     vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/qsh_camera_common.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/qsh_camera_common.json \
     vendor/retroidpocket/cq7790s-common/proprietary/vendor/etc/sensors/config/qsh_camera_common_sm8735.json:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/config/qsh_camera_common_sm8735.json \
@@ -422,7 +425,6 @@ PRODUCT_PACKAGES += \
     libgpt \
     libgpudataproducer \
     libgsl \
-    libhdcpsrm \
     libhdr_backlight_adapter \
     libhdr_tm \
     libidl \
@@ -757,6 +759,7 @@ PRODUCT_PACKAGES += \
     vendor.qti.qccsyshal_aidl-V1-ndk \
     vendor.qti.qccsyshal_aidl-halimpl \
     vendor.qti.qccvndhal_aidl-V1-ndk \
+    com.google.android.widevine.nonupdatable \
     TimeService \
     PowerOffAlarm \
     WfdService \

@@ -3123,34 +3123,6 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libhdcpsrm",
-    owner: "retroidpocket",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libhdcpsrm.so",
-            ],
-            shared_libs: [
-                "liblog",
-                "libQSEEComAPI",
-                "libminkdescriptor",
-                "libtrustedapploader",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
     name: "libhdr_backlight_adapter",
     owner: "retroidpocket",
     strip: {
@@ -12428,6 +12400,14 @@ cc_prebuilt_library_shared {
     compile_multilib: "64",
     prefer: true,
     system_ext_specific: true,
+}
+
+prebuilt_apex {
+    name: "com.google.android.widevine.nonupdatable",
+    owner: "retroidpocket",
+    src: "proprietary/vendor/apex/com.google.android.widevine.nonupdatable.apex",
+    filename: "com.google.android.widevine.nonupdatable.apex",
+    soc_specific: true,
 }
 
 android_app_import {
